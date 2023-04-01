@@ -2,7 +2,7 @@ import 'dart:convert';
 
 class Weather{
   String? cityname;
-  double? temp;
+  String? temp;
   Weather({this .cityname,this.temp});
     Weather.fromJson(Map<String, dynamic> json){
     cityname=json["name"];

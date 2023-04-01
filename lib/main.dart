@@ -12,11 +12,10 @@ void main() {
 class homepage extends StatefulWidget {
   //const homepage({Key? key}) : super(key: key);
 
-  apiclient client =apiclient();
+
   @override
-  Weather? data=Weather();
-  Future<void> getData() async{
-  data=await client.getCurrentWeather("Mumbai");}
+
+
 
   @override
   State<homepage> createState() => _homepageState();
@@ -24,21 +23,27 @@ class homepage extends StatefulWidget {
 
 class _homepageState extends State<homepage> {
   @override
+  apiclient client =apiclient();
+  Weather? data=Weather();
+  Future<void> getData() async{
+    data=await client.getCurrentWeather("London");
+}
   Widget build(BuildContext context) {
       return Scaffold(
          body: FutureBuilder(
-           future: getData(),
-           builder: (context,snapshot){
+             future: getData(),
+             builder: (context,snapshot){
              if(snapshot.connectionState==ConnectionState.done)
                {
                  Column(
                    mainAxisAlignment: MainAxisAlignment.center,
                    children: [
-                     currentWeather(Icons.sunny, "23", "Mumbai")
+                     currentWeather(Icons.sunny, "${data!.temp}" , "${data!.cityname}")
                    ],
                  );
                }
-           }
+           return Container();
+             }
          ),
           /*Column(
           mainAxisAlignment: MainAxisAlignment.center,
